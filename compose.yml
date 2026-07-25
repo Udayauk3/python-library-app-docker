@@ -1,6 +1,7 @@
+---
 services:
   db:
-    build: udaygoud06/pyapp:dbimg
+    image: udaygoud06/pyapp:dbimg
     ports:
       - "3306:3306"
     deploy:
@@ -9,7 +10,7 @@ services:
       - mynet
 
   auth:
-    build: udaygoud06/pyapp:authimg
+    image: udaygoud06/pyapp:authimg
     ports:
       - "5001:5001"
     deploy:
@@ -20,7 +21,7 @@ services:
       - db
 
   book:
-    build: udaygoud06/pyapp:bookimg
+    image: udaygoud06/pyapp:bookimg
     ports:
       - "5002:5002"
     deploy:
@@ -31,7 +32,7 @@ services:
       - db  
 
   borrow:
-    build: udaygoud06/pyapp:borrowimg
+    image: udaygoud06/pyapp:borrowimg
     ports:
       - "5003:5003"
     deploy:
@@ -42,7 +43,7 @@ services:
       - db
 
   frontend:
-    build: udaygoud06/pyapp:mainimg
+    image: udaygoud06/pyapp:mainimg
     ports:
       - "5000:5000"
     deploy:
