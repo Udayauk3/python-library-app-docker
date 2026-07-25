@@ -9,7 +9,7 @@ services:
     networks:
       - mynet
 
-  auth:
+  auth_service:
     image: udaygoud06/pyapp:authimg
     ports:
       - "5001:5001"
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
 
-  book:
+  book_service:
     image: udaygoud06/pyapp:bookimg
     ports:
       - "5002:5002"
@@ -31,7 +31,7 @@ services:
     depends_on:
       - db  
 
-  borrow:
+  borrow_service :
     image: udaygoud06/pyapp:borrowimg
     ports:
       - "5003:5003"
@@ -51,9 +51,9 @@ services:
     networks:
       - mynet
     depends_on:
-      - auth
-      - book
-      - borrow
+      - auth_service
+      - book_service
+      - borrow_service
 
 networks:
   mynet:
