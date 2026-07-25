@@ -1,0 +1,59 @@
+services:
+  db:
+    build: udaygoud06/pyapp:dbimg
+    ports:
+      - "3306:3306"
+    deploy:
+      replicas: 2
+    networks:
+      - mynet
+
+  auth:
+    build: udaygoud06/pyapp:authimg
+    ports:
+      - "5001:5001"
+    deploy:
+      replicas: 2
+    networks:
+      - mynet
+    depends_on:
+      - db
+
+  book:
+    build: udaygoud06/pyapp:bookimg
+    ports:
+      - "5002:5002"
+    deploy:
+      replicas: 2
+    networks:
+      - mynet
+    depends_on:
+      - db  
+
+  borrow:
+    build: udaygoud06/pyapp:borrowimg
+    ports:
+      - "5003:5003"
+    deploy:
+      replicas: 2
+    networks:
+      - mynet
+    depends_on:
+      - db
+
+  frontend:
+    build: udaygoud06/pyapp:mainimg
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 2
+    networks:
+      - mynet
+    depends_on:
+      - auth
+      - book
+      - borrow
+
+networks:
+  mynet:
+    driver: overlay
